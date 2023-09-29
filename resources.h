@@ -35,8 +35,8 @@ void access_res1(const std::string& out, int n, int id);
 */
 extern SpinLock lock_res2;
 /**
- * sleep
- * \param n length
+ * sleep for n seconds
+ * \param n 
 */
 void access_res2(int n);
 

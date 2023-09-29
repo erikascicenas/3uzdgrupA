@@ -25,13 +25,13 @@ void worker(int id) {
 		lock_res1.lock();
 		access_res1("I locked 1.", 18, id);
 		lock_res2.lock();
-		access_res2(50);
+		access_res2(1);
 		lock_res3.lock();
 		lock_res1.unlock();
 		if(iter >= 20 && access_res3() >= RAND_MAX*0.9) {
 			lock_res1.lock();
 			access_res1("We locked 1 again.", 40, id);
-			access_res2(1000);
+			access_res2(10);
 			lock_res1.unlock();
 		}
 		lock_res2.unlock();
