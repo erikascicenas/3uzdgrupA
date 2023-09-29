@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 
+#include <thread>
+
 #include <iostream>
 
 SpinLock lock_res1;
@@ -20,9 +22,8 @@ void access_res1(const std::string& out, int n, int id) {
 }
 
 void access_res2(int n) {
-    for(int i = 0; i < n; ++i)
-        for(int j = 0; j < 1000000; ++j)
-            i*i*j*j*i*j;
+
+    std::this_thread::sleep_for(std::chrono::seconds(n));
 }
 
 int access_res3() {
