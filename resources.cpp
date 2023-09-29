@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include <chrono>
+
 SpinLock lock_res1;
 
 SpinLock lock_res2;
