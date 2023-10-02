@@ -1,2 +1,2 @@
-main:
-	@g++ -g -o main.out main.cpp resources.cpp
+main.out: main.cpp resources.cpp resources.h
+	g++ -g -o main.out main.cpp resources.cpp -lpthread

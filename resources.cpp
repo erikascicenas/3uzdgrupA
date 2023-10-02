@@ -25,7 +25,7 @@ void access_res1(const std::string& out, int n, int id) {
 
 void access_res2(int n) {
 
-    std::this_thread::sleep_for(std::chrono::seconds(n));
+    std::this_thread::sleep_for(std::chrono::milliseconds(n));
 }
 
 int access_res3() {
