@@ -58,7 +58,7 @@ extern SpinLock lock_res2;
 void access_res2(int n);
 
 /**
- * Use this to lock function access_res2
+ * Use this to lock function access_res3
 */
 extern SpinLock lock_res3;
 /**
