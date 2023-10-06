@@ -22,12 +22,14 @@
 #include "resources.h"
 
 void worker(int id);
+const int FUNCTIONS = 2; // only void ones and defined in do_access
+const int LOCKS = 9;
+const int WORKERS = 6;
+SpinLock locks[LOCKS];
 
 int main() {
-	const int WORKERS = 6;
-
 	std::thread threads[WORKERS];
-
+	
 	for(int i = 0; i < WORKERS; ++i)
 		threads[i] = std::thread(worker, i);
 
@@ -39,20 +41,21 @@ int main() {
 
 void worker(int id) {
 	for(unsigned int iter = 0; true; ++iter) {
-		lock_res1.lock();
-		access_res1("I locked 1.", 18, id);
-		lock_res2.lock();
-		access_res2(200);
-		lock_res3.lock();
-		lock_res1.unlock();
+		for (int n = 0; n<LOCKS; n++){
+			 locks[n].lock();
+			 do_accessX(FUNCTIONS,n+1); // bet ne access_res3 nes taip reikia...
+		}
+		locks[0].unlock();
+		printf("Iteration %x" , iter);
 		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) {
 			std::cerr << "THREAD " << id << ": beginning dead lock." << std::endl;
-			lock_res1.lock();
+			locks[0].lock();
 			access_res1("We locked 1 again.", 40, id);
 			access_res2(5000);
-			lock_res1.unlock();
+			locks[0].unlock();
 		}
-		lock_res2.unlock();
-		lock_res3.unlock();
+		for (int n=1; n<LOCKS; n++){
+			locks[n].unlock();
+		}
 	}
 }

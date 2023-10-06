@@ -36,10 +36,6 @@ class SpinLock {
 };
 
 /**
- * Use this to lock function access_res1
-*/
-extern SpinLock lock_res1;
-/**
  * Output string to stdout whilst also computing a factorial to simulate a critical section. Function does not handle acquiring or freeing the lock.
  * \param out string to output first
  * \param n number of which we compute and output the factorial of n.
@@ -48,22 +44,23 @@ extern SpinLock lock_res1;
 void access_res1(const std::string& out, int n, int id);
 
 /**
- * Use this to lock function access_res2
-*/
-extern SpinLock lock_res2;
-/**
  * sleep for n milliseconds
  * \param n number of milliseconds
 */
 void access_res2(int n);
 
-/**
- * Use this to lock function access_res3
-*/
-extern SpinLock lock_res3;
+
 /**
  * Generate one random number
 */
 int access_res3();
+
+
+/**
+ * vykdyti viena is auksciau nurodytu funkciju
+ * \param fn funkciju kiekis
+ * \param id thread id
+*/
+void do_accessX(int fn, int id);
 
 #endif //RESOURCES_H

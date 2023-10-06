@@ -25,12 +25,6 @@
 
 #include <chrono>
 
-SpinLock lock_res1;
-
-SpinLock lock_res2;
-
-SpinLock lock_res3;
-
 void access_res1(const std::string& out, int n, int id) {
     std::cout << '\n' << id << ':' << out << std::endl;
     long fact = 1;
@@ -47,4 +41,21 @@ void access_res2(int n) {
 
 int access_res3() {
     return rand();
+}
+
+void do_accessX(int fn, int id){
+    int random = 1 + (rand() % fn);
+    int wait = (3+(rand()%100));
+    switch(random){
+        case 1:
+            access_res1("Bananai yra gerai", (1+(rand()%6)), id);
+            break;
+        case 2:
+            printf("\nLaukiam: %i s\n", wait);
+            access_res2(wait);
+            break;
+        case 3:
+            // jeigu atsiranda daugiau funkciju continue this...
+            break;
+    }
 }
