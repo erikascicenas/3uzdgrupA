@@ -39,7 +39,7 @@ void access_res2(int n) {
     std::this_thread::sleep_for(std::chrono::milliseconds(n));
 }
 
-int access_res3() {
+int access_res3() { // can be optimised to work with do_accessX
     return rand();
 }
 

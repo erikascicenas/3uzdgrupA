@@ -57,7 +57,7 @@ int access_res3();
 
 
 /**
- * vykdyti viena is auksciau nurodytu funkciju
+ * Vykdo randomly viena is auksciau nurodytu funkciju
  * \param fn funkciju kiekis
  * \param id thread id
 */

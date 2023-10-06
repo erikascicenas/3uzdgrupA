@@ -22,9 +22,9 @@
 #include "resources.h"
 
 void worker(int id);
-const int FUNCTIONS = 2; // only void ones and defined in do_access
-const int LOCKS = 9;
-const int WORKERS = 6;
+const int FUNCTIONS = 2;// only void ones and defined in do_access
+const int LOCKS = 9; 	// Kiek norima naudoti locks
+const int WORKERS = 6;	// Kiek norima nautoti threads
 SpinLock locks[LOCKS];
 
 int main() {
