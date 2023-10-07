@@ -23,8 +23,8 @@
 
 void worker(int id);
 const int FUNCTIONS = 2;// only void ones and defined in do_access
-const int LOCKS = 9; 	// Kiek norima naudoti locks
-const int WORKERS = 6;	// Kiek norima nautoti threads
+const int LOCKS = 3; 	// Kiek norima naudoti locks
+const int WORKERS = 2;	// Kiek norima nautoti threads
 SpinLock locks[LOCKS];
 
 int main() {
@@ -46,7 +46,7 @@ void worker(int id) {
 			 do_accessX(FUNCTIONS,n+1); // bet ne access_res3 nes taip reikia...
 		}
 		locks[0].unlock();
-		printf("Iteration %x" , iter);
+		printf("Iteration %x\n" , iter);
 		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) {
 			std::cerr << "THREAD " << id << ": beginning dead lock." << std::endl;
 			locks[0].lock();
