@@ -15,16 +15,16 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#include <cstdlib>
+#include <cstdlib>  // might be useless needs more testing
+#include <iostream> // might be useless needs more testing
+#include <chrono>   // might be useless needs more testing
+#include <string>   // might be useless needs more testing
 #include <thread>
-#include <iostream>
-#include <chrono>
-#include <string>
 
 #include "resources.h"
 
-void access_res1(const std::string& out, int n, int id) {
-    printf("%i: %s", id, out.c_str()); //Output the id of the thread and given string
+void access_res1(const std::string& out, int n) {
+    printf(out.c_str());        //Output given string
     long fact = 1;
     for(int i = 1; i <= n; ++i) //Compute factorial of given number n
         fact *= i;
@@ -33,7 +33,6 @@ void access_res1(const std::string& out, int n, int id) {
 }
 
 void access_res2(int m) {
-
     std::this_thread::sleep_for(std::chrono::milliseconds(m)); //Sleep for given number of milliseconds
 }
 
@@ -41,20 +40,21 @@ int access_res3() {
     return rand();
 }
 
-void do_accessX(int fn, int id){
+void do_accessX(int fn, int id, int L_id){
+    printf("%i, %i: ", id, L_id);   // Output id of thread and id of lock
     int random = 1 + (rand() % fn); // Randomly generate a number corresponding to a function
     int wait = (3+(rand()%100));    // How much time should access_res2 wait for
     switch(random){
         case 1:
-            access_res1("Bananai yra gerai", (1+(rand()%6)), id);
+            access_res1("Bananai yra gerai", (1+(rand()%6)));
             break;
         case 2:
-            printf("%i: Laukiam: %i ms\n", id, wait);
+            printf("Waiting: %i ms\n", wait);
             access_res2(wait);
             break;
         case 3:
             int random_number = access_res3();
-            printf("%i: Generated random number: %i\n", id, random_number);
+            printf("Generated random number: %i\n", random_number);
             break;
         
         // Any future functions can be added here

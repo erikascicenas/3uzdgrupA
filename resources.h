@@ -39,9 +39,8 @@ class SpinLock {
  * Output string to printf while also computing a factorial to simulate a critical section (the computed factorial is output as well). Function does not handle acquiring or freeing the lock.
  * \param out string to output first
  * \param n   number whose factrorial we compute
- * \param id  id of thread
 */
-void access_res1(const std::string& out, int n, int id);
+void access_res1(const std::string& out, int n);
 
 /**
  * Sleep for m milliseconds
@@ -58,9 +57,10 @@ int access_res3();
 
 /**
  * Randomly executes one of the above defined functions
- * \param fn number of functions
- * \param id id of thread
+ * \param fn   number of functions
+ * \param id   id of thread
+ * \param L_id id of lock
 */
-void do_accessX(int fn, int id);
+void do_accessX(int fn, int id, int L_id);
 
 #endif //RESOURCES_H
