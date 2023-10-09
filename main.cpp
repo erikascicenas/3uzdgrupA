@@ -22,7 +22,7 @@
 #include "resources.cpp"
 
 void worker(int id);
-const int FUNCTIONS = 2;// only void ones and defined in do_access
+const int FUNCTIONS = 3;// only void ones and defined in do_access
 const int LOCKS = 3; 	// Kiek norima naudoti locks
 const int WORKERS = 2;	// Kiek norima nautoti threads
 SpinLock locks[LOCKS];
@@ -43,11 +43,11 @@ void worker(int id) {
 	for(unsigned int iter = 0; true; ++iter) {
 		for (int n = 0; n<LOCKS; n++){
 			 locks[n].lock();
-			 do_accessX(FUNCTIONS,n+1); // bet ne access_res3 nes taip reikia...
+			 do_accessX(FUNCTIONS,n+1);
 		}
 		locks[0].unlock();
 		printf("Iteration %x\n" , iter);
-		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) {
+		if(iter >= 20 && rand() >= RAND_MAX*0.75) {
 			std::cerr << "THREAD " << id << ": beginning dead lock." << std::endl;
 			locks[0].lock();
 			access_res1("We locked 1 again.", 40, id);

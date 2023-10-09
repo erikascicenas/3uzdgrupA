@@ -53,7 +53,7 @@ void access_res2(int m);
 /**
  * Generate one random number
 */
-int access_res3();
+void access_res3();
 
 
 /**

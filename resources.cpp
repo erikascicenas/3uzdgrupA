@@ -36,8 +36,10 @@ void access_res2(int m) {
     std::this_thread::sleep_for(std::chrono::milliseconds(m));
 }
 
-int access_res3() { // can be optimised to work with do_accessX
-    return rand();
+void access_res3() {
+    int random_number = rand();
+    std::cout << '\n' << "Generated random number: " << random_number << std::endl;
+
 }
 
 void do_accessX(int fn, int id){
@@ -52,7 +54,7 @@ void do_accessX(int fn, int id){
             access_res2(wait);
             break;
         case 3:
-            // jeigu atsiranda daugiau funkciju continue this...
+            access_res3();
             break;
     }
 }
