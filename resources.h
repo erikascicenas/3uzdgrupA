@@ -39,9 +39,8 @@ class SpinLock {
  * Output string, get factorial and output that too
  * \param out string to output first
  * \param n   number whose factrorial we compute
- * \param id  id of thread
 */
-void access_res1(const std::string& out, int n, int id);
+void access_res1(const std::string& out, int n);
 
 /**
  * Sleep for m milliseconds
@@ -61,6 +60,6 @@ int access_res3();
  * \param fn number of functions
  * \param id id of thread
 */
-void do_accessX(int fn, int id);
+void do_accessX(int fn, int id, int L_id);
 
 #endif //RESOURCES_H

@@ -15,11 +15,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#include <cstdlib>
+#include <cstdlib>  // might be useless needs more testing
+#include <iostream> // might be useless needs more testing
+#include <chrono>   // might be useless needs more testing
+#include <string>   // might be useless needs more testing
 #include <thread>
-#include <iostream>
-#include <chrono>
-#include <string>
 
 #include "resources.h"
 
@@ -46,15 +46,15 @@ void do_accessX(int fn, int id){
     int wait = (3+(rand()%100));  // How much time should access_res2 wait for
     switch(random){
         case 1:
-            access_res1("Bananai yra gerai", (1+(rand()%6)), id);
+            access_res1("Bananai yra gerai", (1+(rand()%6)));
             break;
         case 2:
-            printf("%i: Laukiam: %i ms\n", id, wait);
+            printf("Waiting: %i ms\n", wait);
             access_res2(wait);
             break;
         case 3:
             int random_number = access_res3();
-            printf("%i: Generated random number: %i\n", id, random_number);
+            printf("Generated random number: %i\n", random_number);
             break;
         
         // Any future functions can be added here

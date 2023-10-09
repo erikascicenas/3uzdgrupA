@@ -24,7 +24,7 @@
 void worker(int id);
 const int FUNCTIONS = 3; // Only functions defined in do_accessX
 const int LOCKS = 3; 	 // How many locks to use
-const int WORKERS = 2;	 // How many threads to use
+const int WORKERS = 3;	 // How many threads to use
 SpinLock locks[LOCKS];
 
 int main() {
@@ -43,14 +43,14 @@ void worker(int id) {
 	for(unsigned int iter = 0; true; ++iter) {
 		for (int n = 0; n<LOCKS; n++){
 			 locks[n].lock();
-			 do_accessX(FUNCTIONS,n+1);
+			 do_accessX(FUNCTIONS, id, n);
 		}
 		locks[0].unlock();
-		printf("Iteration %u\n\n" , iter);
-		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) { // 25% chance to begin deadlock 
+		printf("%i: Iteration %u\n\n", id, iter);
+		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) {
 			std::cerr << "THREAD " << id << ": beginning deadlock." << std::endl;
 			locks[0].lock();
-			access_res1("We locked 1 again.", 40, id);
+			access_res1("We locked 1 again.", 40);
 			access_res2(5000);
 			locks[0].unlock();
 		}
