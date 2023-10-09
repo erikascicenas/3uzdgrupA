@@ -19,7 +19,7 @@
 #include <thread>
 #include <cstdlib>
 
-#include "resources.h"
+#include "resources.cpp"
 
 void worker(int id);
 const int FUNCTIONS = 2;// only void ones and defined in do_access
