@@ -42,13 +42,13 @@ int access_res3() { // can be optimised to work with do_accessX
 
 void do_accessX(int fn, int id){
     int random = 1 + (rand() % fn);
-    int wait = (3+(rand()%100));
+    float wait = (3+(rand()%100));
     switch(random){
         case 1:
             access_res1("Bananai yra gerai", (1+(rand()%6)), id);
             break;
         case 2:
-            printf("\nLaukiam: %i s\n", wait);
+            printf("\nLaukiam: %.3f s\n", wait/1000);
             access_res2(wait);
             break;
         case 3:
