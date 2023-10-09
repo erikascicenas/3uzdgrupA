@@ -19,16 +19,17 @@
 #include <thread>
 #include <iostream>
 #include <chrono>
+#include <string>
 
 #include "resources.h"
 
-void access_res1(const char out[], int n, int id) {
-    printf("%d: %s", id, out);  //Output the id of the thread and given string
+void access_res1(const std::string& out, int n, int id) {
+    printf("%i, %s", id, out.c_str());//Output the id of the thread and given string
     long fact = 1;
     for(int i = 1; i <= n; ++i) //Compute factorial of given number n
         fact *= i;
     
-    printf(" and the factorial is %d\n", fact); //Output computed factorial
+    printf(" and the factorial is %li\n", fact); //Output computed factorial
 }
 
 void access_res2(int m) {
@@ -37,23 +38,23 @@ void access_res2(int m) {
 }
 
 int access_res3() {
-    return rand(); 
+    return rand();
 }
 
 void do_accessX(int fn, int id){
     int random = 1 + (rand() % fn); // Randomly generate a number corresponding to a function
-    float wait = (3+(rand()%100));  // How much time should access_res2 wait for
+    int wait = (3+(rand()%100));  // How much time should access_res2 wait for
     switch(random){
         case 1:
             access_res1("Bananai yra gerai", (1+(rand()%6)), id);
             break;
         case 2:
-            printf("%d: Laukiam: %.3f s\n", id, wait/1000);
+            printf("%i: Laukiam: %i ms\n", id, wait);
             access_res2(wait);
             break;
         case 3:
             int random_number = access_res3();
-            printf("%d: Generated random number: %d\n", id, random_number);
+            printf("%i: Generated random number: %i\n", id, random_number);
             break;
         
         // Any future functions can be added here

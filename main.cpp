@@ -19,7 +19,7 @@
 #include <thread>
 #include <cstdlib>
 
-#include "resources.cpp"
+#include "resources.h"
 
 void worker(int id);
 const int FUNCTIONS = 3; // Only functions defined in do_accessX
@@ -46,7 +46,7 @@ void worker(int id) {
 			 do_accessX(FUNCTIONS,n+1);
 		}
 		locks[0].unlock();
-		printf("Iteration %d\n\n" , iter);
+		printf("Iteration %u\n\n" , iter);
 		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) { // 25% chance to begin deadlock 
 			std::cerr << "THREAD " << id << ": beginning deadlock." << std::endl;
 			locks[0].lock();
