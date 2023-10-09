@@ -22,6 +22,9 @@
 #include <string>
 
 class SpinLock {
+    private:
+    std::atomic_flag m_lock = ATOMIC_FLAG_INIT;
+    
     public:
     void lock() {
         while(m_lock.test_and_set()) {/*nop*/}
@@ -30,24 +33,21 @@ class SpinLock {
     void unlock() {
         m_lock.clear();
     }
-
-    private:
-    std::atomic_flag m_lock = ATOMIC_FLAG_INIT;
 };
 
 /**
- * Output string to stdout whilst also computing a factorial to simulate a critical section. Function does not handle acquiring or freeing the lock.
+ * Output string to cout whilst also computing a factorial to simulate a critical section (computed factorial is outputed after string as string). Function does not handle acquiring or freeing the lock.
  * \param out string to output first
- * \param n number of which we compute and output the factorial of n.
- * \param id id of thread
+ * \param n   number whose factrorial we compute
+ * \param id  id of thread
 */
 void access_res1(const std::string& out, int n, int id);
 
 /**
- * sleep for n milliseconds
- * \param n number of milliseconds
+ * Sleep for m milliseconds
+ * \param m number of milliseconds
 */
-void access_res2(int n);
+void access_res2(int m);
 
 
 /**
@@ -57,9 +57,9 @@ int access_res3();
 
 
 /**
- * Vykdo randomly viena is auksciau nurodytu funkciju
- * \param fn funkciju kiekis
- * \param id thread id
+ * Randomly executes one of the above defined functions
+ * \param fn number of functions
+ * \param id id of thread
 */
 void do_accessX(int fn, int id);
 

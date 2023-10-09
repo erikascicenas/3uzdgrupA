@@ -15,15 +15,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#include "resources.h"
-
 #include <cstdlib>
-
 #include <thread>
-
 #include <iostream>
-
 #include <chrono>
+
+#include "resources.h"
 
 void access_res1(const std::string& out, int n, int id) {
     std::cout << '\n' << id << ':' << out << std::endl;
@@ -34,9 +31,9 @@ void access_res1(const std::string& out, int n, int id) {
     std::cout << "The factorial is " << fact << std::endl;
 }
 
-void access_res2(int n) {
+void access_res2(int m) {
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(n));
+    std::this_thread::sleep_for(std::chrono::milliseconds(m));
 }
 
 int access_res3() { // can be optimised to work with do_accessX
