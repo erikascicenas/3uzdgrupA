@@ -24,7 +24,7 @@
 #include "resources.h"
 
 void access_res1(const std::string& out, int n, int id) {
-    printf("%i, %s", id, out.c_str());//Output the id of the thread and given string
+    printf("%i: %s", id, out.c_str()); //Output the id of the thread and given string
     long fact = 1;
     for(int i = 1; i <= n; ++i) //Compute factorial of given number n
         fact *= i;
@@ -43,7 +43,7 @@ int access_res3() {
 
 void do_accessX(int fn, int id){
     int random = 1 + (rand() % fn); // Randomly generate a number corresponding to a function
-    int wait = (3+(rand()%100));  // How much time should access_res2 wait for
+    int wait = (3+(rand()%100));    // How much time should access_res2 wait for
     switch(random){
         case 1:
             access_res1("Bananai yra gerai", (1+(rand()%6)), id);

@@ -36,7 +36,7 @@ class SpinLock {
 };
 
 /**
- * Output string to printf while also computing a factorial to simulate a critical section (the computed factorial is also output, but below string). Function does not handle acquiring or freeing the lock.
+ * Output string to printf while also computing a factorial to simulate a critical section (the computed factorial is output as well). Function does not handle acquiring or freeing the lock.
  * \param out string to output first
  * \param n   number whose factrorial we compute
  * \param id  id of thread

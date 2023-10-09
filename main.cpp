@@ -43,7 +43,7 @@ void worker(int id) {
 	for(unsigned int iter = 0; true; ++iter) {
 		for (int n = 0; n<LOCKS; n++){
 			 locks[n].lock();
-			 do_accessX(FUNCTIONS,n+1);
+			 do_accessX(FUNCTIONS, id);
 		}
 		locks[0].unlock();
 		printf("Iteration %u\n\n" , iter);
