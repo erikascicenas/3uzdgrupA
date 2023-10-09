@@ -22,9 +22,9 @@
 #include "resources.cpp"
 
 void worker(int id);
-const int FUNCTIONS = 3;// only void ones and defined in do_access
-const int LOCKS = 3; 	// Kiek norima naudoti locks
-const int WORKERS = 2;	// Kiek norima nautoti threads
+const int FUNCTIONS = 3; // Only functions defined in do_accessX
+const int LOCKS = 3; 	 // How many locks to use
+const int WORKERS = 2;	 // How many threads to use
 SpinLock locks[LOCKS];
 
 int main() {
@@ -46,9 +46,9 @@ void worker(int id) {
 			 do_accessX(FUNCTIONS,n+1);
 		}
 		locks[0].unlock();
-		printf("Iteration %x\n" , iter);
-		if(iter >= 20 && rand() >= RAND_MAX*0.75) {
-			std::cerr << "THREAD " << id << ": beginning dead lock." << std::endl;
+		printf("Iteration %d\n\n" , iter);
+		if(iter >= 20 && access_res3() >= RAND_MAX*0.75) { // 25% chance to begin deadlock 
+			std::cerr << "THREAD " << id << ": beginning deadlock." << std::endl;
 			locks[0].lock();
 			access_res1("We locked 1 again.", 40, id);
 			access_res2(5000);

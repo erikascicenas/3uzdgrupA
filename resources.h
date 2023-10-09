@@ -36,7 +36,7 @@ class SpinLock {
 };
 
 /**
- * Output string to cout whilst also computing a factorial to simulate a critical section (computed factorial is outputed after string as string). Function does not handle acquiring or freeing the lock.
+ * Output string to printf while also computing a factorial to simulate a critical section (the computed factorial is also output, but below string). Function does not handle acquiring or freeing the lock.
  * \param out string to output first
  * \param n   number whose factrorial we compute
  * \param id  id of thread
@@ -53,7 +53,7 @@ void access_res2(int m);
 /**
  * Generate one random number
 */
-void access_res3();
+int access_res3();
 
 
 /**
