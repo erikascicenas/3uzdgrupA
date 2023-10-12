@@ -15,49 +15,61 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#include <cstdlib>  // might be useless needs more testing
-#include <iostream> // might be useless needs more testing
-#include <chrono>   // might be useless needs more testing
-#include <string>   // might be useless needs more testing
+#include <cstdlib> // might be useless needs more testing
+#include <fstream> // might be useless needs more testing
+#include <chrono>  // might be useless needs more testing
+#include <string>  // might be useless needs more testing
 #include <thread>
+#include <iostream>
 
 #include "resources.h"
 
-void access_res1(const std::string& out, int n, int id) {
-    printf("%i, %s", id, out.c_str());// Output the id of the thread and given string
+void access_res1(const std::string &out, int n, int id)
+{
+    std::ofstream failas(std::string("file.") + std::to_string(id), std::ios_base::app);
+    failas << id << " " << out.c_str() << "\n";
+    // printf("%i, %s", id, out.c_str());// Output the id of the thread and given string
     long fact = 1;
-    for(int i = 1; i <= n; ++i) // Compute factorial of given number n
+    for (int i = 1; i <= n; ++i) // Compute factorial of given number n
         fact *= i;
-    
-    printf(" and the factorial is %li\n", fact); // Output computed factorial
+    failas << "and the factorial is " << fact << "\n";
+    // printf(" and the factorial is %li\n", fact); // Output computed factorial
 }
 
-void access_res2(int m) {
+void access_res2(int m)
+{
 
     std::this_thread::sleep_for(std::chrono::milliseconds(m)); // Sleep for given number of milliseconds
 }
 
-int access_res3() {
+int access_res3()
+{
     return rand();
 }
 
-void do_accessX(int fn, int id){
-    int random = 1 + (rand() % fn); // Generate a random number in range [1, fn]
-    int wait = (3+(rand()%100));  // How much time should access_res2 wait for
-    std::string smarve = "Bananai yra gerai";
-    switch(random){
-        case 1:
-            access_res1(smarve, (int)(1+(rand()%6)), id);
-            break;
-        case 2:
-            printf("Waiting: %i ms\n", wait);
-            access_res2(wait);
-            break;
-        case 3:
-            int random_number = access_res3();
-            printf("Generated random number: %i\n", random_number);
-            break;
-        
+void do_accessX(int fn, int id)
+{
+    int random = 1 + (rand() % fn);  // Generate a random number in range [1, fn]
+    int wait = (3 + (rand() % 100)); // How much time should access_res2 wait for
+    std::string bananai = "Bananai yra gerai";
+    std::ofstream failas(std::string("file.") + std::to_string(id), std::ios_base::app);
+
+    switch (random)
+    {
+    case 1:
+        access_res1(bananai, (int)(1 + (rand() % 6)), id);
+        break;
+    case 2:
+        failas << "Waiting: " << wait << "ms\n";
+        // fprintf("Waiting: %i ms\n", wait);
+        access_res2(wait);
+        break;
+    case 3:
+        int random_number = access_res3();
+        failas << "Generated random number: " << random_number << "\n";
+        // printf("Generated random number: %i\n", random_number);
+        break;
+
         // Any future functions can be added here
     }
 }
