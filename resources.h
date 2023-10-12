@@ -40,7 +40,7 @@ class SpinLock {
  * \param out string to output first
  * \param n   number whose factrorial we compute
 */
-void access_res1(const std::string& out, int n);
+void access_res1(const std::string& out, int n,int id);
 
 /**
  * Sleep for m milliseconds
@@ -60,6 +60,6 @@ int access_res3();
  * \param fn number of functions
  * \param id id of thread
 */
-void do_accessX(int fn, int id, int L_id);
+void do_accessX(int fn, int id);
 
 #endif //RESOURCES_H
