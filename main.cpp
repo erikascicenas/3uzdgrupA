@@ -27,6 +27,7 @@ void worker(int id);
 const int FUNCTIONS = 3; // Only functions defined in do_accessX
 const int LOCKS = 3;	 // How many locks to use
 const int WORKERS = 6;	 // How many threads to use
+const double PROBABILITY = 0.95; // How likely should a deadlock be every iteration?
 SpinLock locks[LOCKS];
 
 int main()
@@ -54,7 +55,7 @@ void worker(int id)
 		}
 		locks[0].unlock();
 		printf("%i: Iteration %u\n\n", id, iter);
-		if (iter >= 20 && access_res3() >= RAND_MAX * 0.75)
+		if (iter >= 20 && access_res3() >= RAND_MAX * PROBABILITY)
 		{
 			std::cerr << "THREAD " << id << ": beginning deadlock." << std::endl;
 			locks[0].lock();
