@@ -38,4 +38,4 @@
 # End of https://www.toptal.com/developers/gitignore/api/c++
 
 # Exclude output files
-file.[0-9]+
+file.*
